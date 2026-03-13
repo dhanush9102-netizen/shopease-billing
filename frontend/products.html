@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — ShopEase Billing</title>
+  <!-- ⚙️ DEPLOYMENT: Replace REPLACE_BACKEND_URL with your Render URL -->
+  <meta name="backend-url" content="REPLACE_BACKEND_URL" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="shop-name">🛍 ShopEase</div>
+      <div class="shop-tag">Retail Billing System</div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-icon">🏠</span> Dashboard</a></li>
+      <li><a href="products.html" class="active"><span class="nav-icon">📦</span> Products</a></li>
+      <li><a href="billing.html"><span class="nav-icon">🧾</span> New Bill</a></li>
+      <li><a href="history.html"><span class="nav-icon">📋</span> Billing History</a></li>
+    </ul>
+    <div class="sidebar-footer">ShopEase v1.0 · Academic Project</div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main">
+    <header class="topbar">
+      <span class="topbar-title">Product Management</span>
+      <div class="topbar-right">
+        <span class="badge-date" id="today-date"></span>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1>Products</h1>
+          <p>Manage your store inventory — add, edit, or remove products.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openProductModal()">+ Add Product</button>
+      </div>
+
+      <!-- Product List Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Product Inventory</h2>
+          <!-- Search Box -->
+          <div class="search-input">
+            <span>🔍</span>
+            <input type="text" id="product-search" placeholder="Search products…" />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-body">
+              <tr><td colspan="5"><div class="loader"><div class="spinner"></div> Loading…</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /page-body -->
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ── Add / Edit Product Modal ────────────────────────────── -->
+<div class="modal-overlay" id="product-modal" style="display:none"
+     onclick="if(event.target===this) closeProductModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Add New Product</h3>
+      <button class="modal-close" onclick="closeProductModal()">✕</button>
+    </div>
+
+    <form id="product-form" novalidate>
+      <input type="hidden" id="edit-product-id" />
+
+      <div class="form-group">
+        <label for="product-name">Product Name</label>
+        <input type="text" id="product-name" class="form-control"
+               placeholder="e.g. Basmati Rice (1 kg)" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="product-price">Price (₹)</label>
+          <input type="number" id="product-price" class="form-control"
+                 placeholder="0.00" min="0" step="0.01" required />
+        </div>
+        <div class="form-group">
+          <label for="product-stock">Stock (units)</label>
+          <input type="number" id="product-stock" class="form-control"
+                 placeholder="0" min="0" required />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+  document.getElementById("today-date").textContent =
+    new Date().toLocaleDateString("en-IN", { weekday:"short", day:"2-digit", month:"short", year:"numeric" });
+</script>
+</body>
+</html>

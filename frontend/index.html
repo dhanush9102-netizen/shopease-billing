@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — ShopEase Billing</title>
+  <!-- ⚙️ DEPLOYMENT: Replace REPLACE_BACKEND_URL with your Render URL, e.g. https://shopease-api.onrender.com -->
+  <meta name="backend-url" content="REPLACE_BACKEND_URL" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="shop-name">🛍 ShopEase</div>
+      <div class="shop-tag">Retail Billing System</div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Dashboard</a></li>
+      <li><a href="products.html"><span class="nav-icon">📦</span> Products</a></li>
+      <li><a href="billing.html"><span class="nav-icon">🧾</span> New Bill</a></li>
+      <li><a href="history.html"><span class="nav-icon">📋</span> Billing History</a></li>
+    </ul>
+    <div class="sidebar-footer">ShopEase v1.0 · Academic Project</div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main">
+    <header class="topbar">
+      <span class="topbar-title">Dashboard</span>
+      <div class="topbar-right">
+        <span class="badge-date" id="today-date"></span>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1>Welcome Back 👋</h1>
+          <p>Here's what's happening at your shop today.</p>
+        </div>
+        <a href="billing.html" class="btn btn-primary">+ New Bill</a>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value" id="stat-revenue">—</div>
+          <div class="stat-label">Total Revenue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🧾</div>
+          <div class="stat-value" id="stat-bills">—</div>
+          <div class="stat-label">Total Bills</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📦</div>
+          <div class="stat-value" id="stat-products">—</div>
+          <div class="stat-label">Products in Store</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-value" id="stat-avg">—</div>
+          <div class="stat-label">Avg. Bill Value</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="stat-top" style="font-size:1.1rem">—</div>
+          <div class="stat-label">Top Selling Product</div>
+        </div>
+      </div>
+
+      <!-- Recent Bills -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Recent Bills</h2>
+          <a href="history.html" class="btn btn-secondary btn-sm">View All →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bill ID</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="recent-bills-body">
+              <tr><td colspan="5"><div class="loader"><div class="spinner"></div> Loading…</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="grid-2 mt-16">
+        <div class="card" style="text-align:center;padding:36px">
+          <div style="font-size:2.5rem;margin-bottom:12px">📦</div>
+          <h3 style="font-family:var(--font-display);margin-bottom:8px">Manage Products</h3>
+          <p class="text-muted" style="font-size:.88rem;margin-bottom:18px">Add, edit, or remove products from your inventory.</p>
+          <a href="products.html" class="btn btn-primary">Go to Products</a>
+        </div>
+        <div class="card" style="text-align:center;padding:36px">
+          <div style="font-size:2.5rem;margin-bottom:12px">🧾</div>
+          <h3 style="font-family:var(--font-display);margin-bottom:8px">Create a Bill</h3>
+          <p class="text-muted" style="font-size:.88rem;margin-bottom:18px">Start a new transaction and generate an invoice.</p>
+          <a href="billing.html" class="btn btn-primary">New Bill</a>
+        </div>
+      </div>
+    </div><!-- /page-body -->
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script src="js/script.js"></script>
+<script>
+  // Set today's date in the topbar
+  document.getElementById("today-date").textContent =
+    new Date().toLocaleDateString("en-IN", { weekday:"short", day:"2-digit", month:"short", year:"numeric" });
+</script>
+</body>
+</html>

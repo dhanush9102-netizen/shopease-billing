@@ -1,0 +1,24 @@
+{
+  "name": "shopease-billing-backend",
+  "version": "1.0.0",
+  "description": "ShopEase Retail Billing System — Express API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev":   "nodemon server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cors"   : "^2.8.5",
+    "dotenv" : "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2" : "^3.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "author": "Academic Project",
+  "license": "ISC"
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Bill — ShopEase Billing</title>
+  <!-- ⚙️ DEPLOYMENT: Replace REPLACE_BACKEND_URL with your Render URL -->
+  <meta name="backend-url" content="REPLACE_BACKEND_URL" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="shop-name">🛍 ShopEase</div>
+      <div class="shop-tag">Retail Billing System</div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-icon">🏠</span> Dashboard</a></li>
+      <li><a href="products.html"><span class="nav-icon">📦</span> Products</a></li>
+      <li><a href="billing.html" class="active"><span class="nav-icon">🧾</span> New Bill</a></li>
+      <li><a href="history.html"><span class="nav-icon">📋</span> Billing History</a></li>
+    </ul>
+    <div class="sidebar-footer">ShopEase v1.0 · Academic Project</div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main">
+    <header class="topbar">
+      <span class="topbar-title">Create New Bill</span>
+      <div class="topbar-right">
+        <span class="badge-date" id="today-date"></span>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="page-header">
+        <div>
+          <h1>New Bill</h1>
+          <p>Select products, enter quantities, and generate a customer invoice.</p>
+        </div>
+      </div>
+
+      <div class="billing-grid">
+        <!-- ── Left: Product Selector ─────────────────────── -->
+        <div>
+          <!-- Customer Name -->
+          <div class="card mb-16" style="margin-bottom:20px">
+            <div class="card-header"><h2>Customer Details</h2></div>
+            <div class="form-group" style="margin-bottom:0">
+              <label for="customer-name">Customer Name</label>
+              <input type="text" id="customer-name" class="form-control"
+                     placeholder="Enter customer name…" />
+            </div>
+          </div>
+
+          <!-- Add Item -->
+          <div class="card">
+            <div class="card-header"><h2>Add Product to Bill</h2></div>
+
+            <div class="form-group">
+              <label for="product-select">Select Product</label>
+              <select id="product-select" class="form-control">
+                <option value="">Loading products…</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="item-qty">Quantity</label>
+                <input type="number" id="item-qty" class="form-control"
+                       value="1" min="1" />
+              </div>
+              <div class="form-group">
+                <label>Unit Price</label>
+                <div class="form-control" style="background:var(--surface-2);cursor:default;font-weight:600;color:var(--accent)"
+                     id="item-price-display">—</div>
+                <input type="hidden" id="item-price" />
+              </div>
+              <div class="form-group">
+                <label>Item Subtotal</label>
+                <div class="form-control" style="background:var(--surface-2);cursor:default;font-weight:700;color:var(--accent-dark)"
+                     id="item-subtotal">—</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="add-to-cart-btn">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Right: Cart ───────────────────────────────── -->
+        <div class="card" style="height:fit-content">
+          <div class="card-header">
+            <h2>🛒 Cart</h2>
+            <span id="cart-count" class="chip chip-accent">0 items</span>
+          </div>
+
+          <ul class="cart-items" id="cart-list">
+            <li class="cart-empty">No items added yet.</li>
+          </ul>
+
+          <div id="cart-total"></div>
+
+          <div style="margin-top:20px">
+            <button class="btn btn-primary btn-full btn-lg" id="create-bill-btn" disabled>
+              ✅ Create Bill & Generate Invoice
+            </button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /page-body -->
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script src="js/script.js"></script>
+<script>
+  document.getElementById("today-date").textContent =
+    new Date().toLocaleDateString("en-IN", { weekday:"short", day:"2-digit", month:"short", year:"numeric" });
+
+  // Update cart item count badge
+  const origRenderCart = renderCart;
+  // Patch cart count after rendering
+  const _renderCart = renderCart;
+  window.renderCart = function() {
+    _renderCart();
+    const countEl = document.getElementById("cart-count");
+    if (countEl) countEl.textContent = cart.length + " item" + (cart.length !== 1 ? "s" : "");
+  };
+</script>
+</body>
+</html>

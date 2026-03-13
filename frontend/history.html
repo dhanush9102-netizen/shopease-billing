@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing History — ShopEase Billing</title>
+  <!-- ⚙️ DEPLOYMENT: Replace REPLACE_BACKEND_URL with your Render URL -->
+  <meta name="backend-url" content="REPLACE_BACKEND_URL" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="shop-name">🛍 ShopEase</div>
+      <div class="shop-tag">Retail Billing System</div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-icon">🏠</span> Dashboard</a></li>
+      <li><a href="products.html"><span class="nav-icon">📦</span> Products</a></li>
+      <li><a href="billing.html"><span class="nav-icon">🧾</span> New Bill</a></li>
+      <li><a href="history.html" class="active"><span class="nav-icon">📋</span> Billing History</a></li>
+    </ul>
+    <div class="sidebar-footer">ShopEase v1.0 · Academic Project</div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main">
+    <header class="topbar">
+      <span class="topbar-title">Billing History</span>
+      <div class="topbar-right">
+        <span class="badge-date" id="today-date"></span>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="page-header">
+        <div>
+          <h1>Billing History</h1>
+          <p>View and search all past bills and invoices.</p>
+        </div>
+        <a href="billing.html" class="btn btn-primary">+ New Bill</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>All Bills</h2>
+          <div class="search-input">
+            <span>🔍</span>
+            <input type="text" id="history-search" placeholder="Search by name or ID…" />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bill ID</th>
+                <th>Customer Name</th>
+                <th style="text-align:center">Items</th>
+                <th>Total Amount</th>
+                <th>Date & Time</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody id="history-body">
+              <tr><td colspan="6"><div class="loader"><div class="spinner"></div> Loading…</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /page-body -->
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script src="js/script.js"></script>
+<script>
+  document.getElementById("today-date").textContent =
+    new Date().toLocaleDateString("en-IN", { weekday:"short", day:"2-digit", month:"short", year:"numeric" });
+</script>
+</body>
+</html>

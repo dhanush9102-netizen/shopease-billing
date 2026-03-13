@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice — ShopEase Billing</title>
+  <!-- ⚙️ DEPLOYMENT: Replace REPLACE_BACKEND_URL with your Render URL -->
+  <meta name="backend-url" content="REPLACE_BACKEND_URL" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+  <!-- ── Sidebar ─────────────────────────────────────────── -->
+  <aside class="sidebar no-print">
+    <div class="sidebar-logo">
+      <div class="shop-name">🛍 ShopEase</div>
+      <div class="shop-tag">Retail Billing System</div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="index.html"><span class="nav-icon">🏠</span> Dashboard</a></li>
+      <li><a href="products.html"><span class="nav-icon">📦</span> Products</a></li>
+      <li><a href="billing.html"><span class="nav-icon">🧾</span> New Bill</a></li>
+      <li><a href="history.html"><span class="nav-icon">📋</span> Billing History</a></li>
+    </ul>
+    <div class="sidebar-footer">ShopEase v1.0 · Academic Project</div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main">
+    <header class="topbar no-print">
+      <span class="topbar-title">Invoice</span>
+      <div class="topbar-right">
+        <button class="btn btn-secondary btn-sm" onclick="history.back()">← Back</button>
+        <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 Print</button>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="invoice-wrap">
+        <!-- Invoice is injected by JS -->
+        <div id="invoice-container">
+          <div class="loader"><div class="spinner"></div> Loading invoice…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
